@@ -8,7 +8,9 @@ include make-utils/cpp-utils.mk
 SQRT_VALUE=5000000
 
 WARNING_FLAGS += -Wno-missing-field-initializers
-CXX_FLAGS += -DSQRT_VALUE=$(SQRT_VALUE) -ICatch/include
+CXX_FLAGS += -DSQRT_VALUE=$(SQRT_VALUE) -ICatch/include -I/usr/local/Cellar/boost@1.60/1.60.0/include -L/usr/local/Cellar/boost@1.60/1.60.0/lib 
+				
+CXX = icc# /usr/local/bin/g++-8
 
 $(eval $(call use_cpp11))
 
@@ -69,7 +71,8 @@ $(eval $(call add_src_executable,bench_pow_my_pow,bench_pow_my_pow.cpp))
 
 $(eval $(call add_src_executable,linear_sorting,linear_sorting/bench.cpp))
 
-$(eval $(call add_src_executable,boost_po_v1,boost_po/v1.cpp,-lboost_program_options))
+$(eval $(call add_src_executable,boost_po_v1,boost_po/v1.cpp,-lboost_program_options,-lboost_program_options-mt))
+# $(eval $(call add_src_executable,boost_po_v1,boost_po/v1.cpp,-lboost_program_options-mt))
 
 $(eval $(call add_src_executable,vector_list,vector_list/bench.cpp graphs.cpp demangle.cpp))
 $(eval $(call add_src_executable,vector_list_update_1,vector_list_update_1/bench.cpp graphs.cpp demangle.cpp))

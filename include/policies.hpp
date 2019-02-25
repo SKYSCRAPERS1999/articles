@@ -6,6 +6,7 @@
 //=======================================================================
 
 #include <boost/intrusive/list.hpp>
+#include "plf_colony.h"
 
 // create policies
 
